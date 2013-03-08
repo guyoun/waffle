@@ -34,9 +34,9 @@ case $command in
 
 		echo "install"
 		#download cakephp core
-		mkdir $cakephp_core_dir
+		mkdir $cakephp_core
 		
-		cd $cakephp_core_dir
+		cd $cakephp_core
 		git clone $CAKEPHP_REPOSITORY $cakephp_ver
 		
 		cd $cakephp_ver
