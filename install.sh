@@ -27,7 +27,7 @@ done
 
 case $command in
 	install)
-		install_path=pwd
+		install_path=$PWD
 		project_root_path=$install_path/$project
 		cakephpcore_path=$install_path/$cakephp_core/$ccakephp_ver
 		app_path=$install_path/$project/$app
