@@ -12,7 +12,7 @@ set -- $(getopt -u -o iu:c:v:p:a: -l install,uninstall:cake:ver:project:app:-- "
 while [ $# -gt 0 ]
 do
     case "$1" in
-    (-a) appe="$2"; shift;;
+    (-a) app="$2"; shift;;
     (-c) cakephp_core=$2; shift;;
     (-p) project=$2; shift;;
     (-v) cakephp_ver=$2; shift;;
