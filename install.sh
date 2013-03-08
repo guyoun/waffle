@@ -1,6 +1,6 @@
 #!/bin/bash 
 #Usage : ./install.sh -a test -p test -c core -v 1.3 -i
-DEFAULT_INDEX_URL=https://github.com/guyoun/waffle/blob/master/default/index.php-1.3
+DEFAULT_INDEX_URL=https://raw.github.com/guyoun/waffle/master/default/index.php-1.3
 CAKEPHP_REPOSITORY="https://github.com/cakephp/cakephp.git"
 project="default_project"
 cakephp_core="cakephp_core"
