@@ -13,8 +13,8 @@ while [ $# -gt 0 ]
 do
     case "$1" in
     (-a) appe="$2"; shift;;
-    (-c) cakephp_core_dir=$2; shift;;
-    (-p) project_name=$2; shift;;
+    (-c) cakephp_core=$2; shift;;
+    (-p) project=$2; shift;;
     (-v) cakephp_ver=$2; shift;;
     (-i) command="install";;
     (-u) command="uninstall";;
