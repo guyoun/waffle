@@ -29,7 +29,7 @@ case $command in
 	install)
 		install_path=$PWD
 		project_root_path=$install_path/$project
-		cakephpcore_path=$install_path/$cakephp_core/$ccakephp_ver
+		cakephp_core_path=$install_path/$cakephp_core/$ccakephp_ver
 		app_path=$install_path/$project/$app
 
 		echo "install"
@@ -45,7 +45,7 @@ case $command in
 		#generate index.php
 		cd $install_path
 		wget $DEFAULT_INDEX_URL
-		sed -e "s;%ROOT%;$project_rooti_path;" -e "s;%APP%;$app;" -e "s;%CORE%;$cakephp_core_path;"  index.php-1.3 > index.php
+		sed -e "s;%ROOT%;$project_root_path;" -e "s;%APP%;$app;" -e "s;%CORE%;$cakephp_core_path;"  index.php-1.3 > index.php
 	;;
 	uninstall)
 		echo "uninstall"
