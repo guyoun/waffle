@@ -1,6 +1,6 @@
 #!/bin/bash 
 #Usage : ./install.sh -a test -p test -c core -v 1.3 -i
-DEFAULT_INDEX_URL=https://raw.github.com/guyoun/waffle/master/default/index.php-1.3
+DEFAULT_INDEX_URL="https://raw.github.com/guyoun/waffle/master/default/index.php-1.3"
 CAKEPHP_REPOSITORY="https://github.com/cakephp/cakephp.git"
 project="default_project"
 cakephp_core="cakephp_core"
@@ -44,7 +44,7 @@ case $command in
 		
 		#generate index.php
 		cd $install_path
-		wget DEFAULT_INDEX_URL
+		wget $DEFAULT_INDEX_URL
 		sed -e "s;%ROOT%;$project_rooti_path;" -e "s;%APP%;$app;" -e "s;%CORE%;$cakephp_core_path;"  index.php-1.3 > index.php
 	;;
 	uninstall)
