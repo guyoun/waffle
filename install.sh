@@ -8,11 +8,11 @@ cakephp_ver="1.3"
 app="default_app"
 command="install"
 
-set -- $(getopt -u -o iu:c:v:p:a: -l install,uninstall:cake:ver:project:app:-- "$@")
+set -- $(getopt -u -o iuc:v:p:a: -l install,uninstallcake:ver:project:app: -- "$@")
 while [ $# -gt 0 ]
 do
     case "$1" in
-    (-a) app="$2"; shift;;
+    (-a) app=$2; shift;;
     (-c) cakephp_core=$2; shift;;
     (-p) project=$2; shift;;
     (-v) cakephp_ver=$2; shift;;
@@ -29,26 +29,35 @@ case $command in
 	install)
 		install_path=$PWD
 		project_root_path=$install_path/$project
-		cakephp_core_path=$install_path/$cakephp_core/$ccakephp_ver
-		app_path=$install_path/$project/$app
+		cakephp_core_path=$install_path/$cakephp_core/$cakephp_ver
 
-		echo "install"
+		echo "Install cakephp core, make project skeleton"
+
 		#download cakephp core
-		mkdir $cakephp_core
-		
+		mkdir $cakephp_core		
 		cd $cakephp_core
 		git clone $CAKEPHP_REPOSITORY $cakephp_ver
 		
 		cd $cakephp_ver
 		git checkout -b $cakephp_ver origin/$cakephp_ver
 		
-		#generate index.php
+		#make project directory and copy app, webroot, change persmission tmp directory
 		cd $install_path
-		wget $DEFAULT_INDEX_URL
-		sed -e "s;%ROOT%;$project_root_path;" -e "s;%APP%;$app;" -e "s;%CORE%;$cakephp_core_path;"  index.php-1.3 > index.php
+		mkdir $project
+		cd $project
+		mkdir plugins
+		rsync -a --exclude='webroot' $cakephp_core_path/app/* $app/
+		chmod 707 -R $app/tmp
+		cp -r $cakephp_core_path/app/webroot public_html
+
+		#generate index.php for this environment
+		cd $install_path
+		curl $DEFAULT_INDEX_URL > index.php-1.3
+		sed -e "s;%ROOT%;$project_root_path;" -e "s;%APP%;$app;" -e "s;%CORE%;$cakephp_core_path;"  index.php-1.3 > index.php		
+		mv index.php $project_root_path/public_html/
+		rm index.php-1.3
 	;;
 	uninstall)
-		echo "uninstall"
+		echo "Uninstall is not supported"
 	;;	
 esac
-
